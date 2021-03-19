@@ -1,24 +1,10 @@
 //imports
 import React, { useEffect, useState } from 'react';
-
-
-//react-icons
-import { ImArrowUp } from 'react-icons/im';
-//import { BiCheckCircle } from 'react-icons/bi';
-//import { RiDeleteBinLine } from 'react-icons/ri';
-import { ImArrowDown } from 'react-icons/im';
-
-//material-ui
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-
+import Filtering from './components/Filtering/Filtering';
+import InputField from './components/InputField/InputField';
+import ListBlock from './components/ListBlock/ListBlock';
+import Sorting from './components/Sorting/Sorting';
+import './ToDoList.css';
 
 export default function ToDoList() {
   const [inputText, setInputText] = useState('');
@@ -50,7 +36,6 @@ export default function ToDoList() {
     ]);
     setTodoId(todoId + 1);
     setStatus("all");
-    console.log(1);
   };
 
   const handlerDeleteItem = (e, index) => {
@@ -67,18 +52,11 @@ export default function ToDoList() {
     setTodos([...updatedTodos]);
   };
 
-  const handlerButtonStatusChange = e => {
-    setStatus(e.target.value);
-    console.log(status);
-  };
 
   const handlerFilterTodos = () => {
-    // console.log(status);
     if (status === "all") {
-      console.log("all",[...todos])
       setFilteredTodos([...todos]);
     } else if (status === "done") {
-      console.log("done")
       setFilteredTodos([...todos.filter(e => e.completed === true)]);
     } else if (status === "undone") {
       setFilteredTodos([...todos.filter(e => e.completed === false)]);
@@ -87,53 +65,26 @@ export default function ToDoList() {
 
   useEffect(() => {
     handlerFilterTodos();
-  }, [todos,status]);
+  }, [todos, status]);
   
   return (
     <section className="main-section">
       <h1>ToDo</h1>
-      <div className="input">
-        <TextField onChange={ handlerInputText } onKeyPress={ handlerInputText } type="text" autoComplete= "off" className="main-input" id="outlined-basic" label="I want to..." variant="outlined"/>
-      </div>
+      <InputField
+        handlerInputText = {handlerInputText}
+        inputText= {inputText}
+      />
       <div className="wrapper">
-        <div className="selection-bar">
-          <button className="button all-button" onClick={() =>  setStatus("all") } value="all" >All</button>
-          <button className="button done-button" onClick={() => setStatus("done")} value="done">Done</button>
-          <button className="button undone-button" onClick={() => setStatus("undone")} value="undone">Undone</button>
-        </div>
-        <div className="sort">
-          <h3>Sort by Date</h3>
-          <div className="arrows">
-            <Button variant="contained">
-              <ImArrowUp className="up-arrow" size="1rem"/>
-            </Button>
-            <Button variant="contained">
-              <ImArrowDown className="down-arrow" size="1rem"/>
-            </Button>
-          </div>
-        </div>
+        <Filtering 
+          setStatus = {setStatus}
+        />
+        <Sorting />
       </div>
-      <div className="list">
-      <List width="100%">
-      { filteredTodos.map((todo) => (
-        <ListItem key={todo.id}>
-          <ListItemIcon>
-            <Checkbox checked={todo.completed} onClick={ (e) => handlerCheckingCheckBox(e, todo.id) }/>
-          </ListItemIcon>
-          <ListItemText primary={todo.text} />
-          <IconButton onClick={ (e) => handlerDeleteItem(e, todo.id) }  edge="end" aria-label="comments">
-            <DeleteIcon />
-          </IconButton>
-        </ListItem>
-        )) }
-      </List>
-      </div>
-      <div className="delete-bar">
-        <div className="delete-completed">
-
-        </div>
-
-      </div>      
+      <ListBlock 
+        handlerCheckingCheckBox = {handlerCheckingCheckBox}
+        handlerDeleteItem = {handlerDeleteItem}
+        filteredTodos = {filteredTodos}
+      />     
     </section> 
   );
 }

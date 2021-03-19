@@ -38,12 +38,7 @@
 } */
 
 
-.input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
+
 
 .todolist {
   font-family: "Poppins", sans-serif;
@@ -54,11 +49,7 @@
   margin-bottom: 10px;
 }
 
-.selection-bar button{
-  padding: .3rem;
-  margin-right: 5px;
 
-}
 
 .wrapper {
   display: flex;
@@ -71,28 +62,6 @@
   margin-right: 20px;
 }
 
-.sort {
-  margin-left: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.arrows {
-  margin-left: 15px;
-}
-
-.down-arrow {
-  margin-left: 10px;
-}
-
-.sort button{
-  outline: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-}   
 
 .todo-item {
   padding: .2rem 5rem .2rem .5rem;
@@ -102,25 +71,5 @@
   width: 100%;
 }
 
-.list {
-  width: 100%;
-}
 
-.button {
-  font-family: "Poppins";
-  border: none;
-  background-color: #fff;
-  box-shadow: 0 .1rem .1rem #ccc;
-} 
 
-.button:hover {
-  background-color: #ccc;
-  border: none;
-  cursor: pointer;
-  
-}
-
-.button:active, .button:focus {
-  outline: none;
-  background-color: #ccc;
-}

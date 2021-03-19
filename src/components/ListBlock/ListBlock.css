@@ -1,0 +1,12 @@
+.list {
+  width: 100%;
+  padding: 0;
+}
+
+.MuiListItem-root {
+  padding: 0;
+}
+
+.MuiCheckbox-colorPrimary {
+  padding-left: 0;
+}
