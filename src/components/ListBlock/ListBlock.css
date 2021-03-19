@@ -3,10 +3,8 @@
   padding: 0;
 }
 
-.MuiListItem-root {
-  padding: 0;
+.MuiListItem-gutters {
+  box-shadow: .1rem .1rem .1rem #ccc;
+  margin-bottom: 5px;
 }
 
-.MuiCheckbox-colorPrimary {
-  padding-left: 0;
-}

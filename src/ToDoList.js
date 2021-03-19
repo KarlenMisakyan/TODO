@@ -1,5 +1,6 @@
 //imports
 import React, { useEffect, useState } from 'react';
+import DeleteSelected from './components/DeleteSelected/DeleteSelected';
 import Filtering from './components/Filtering/Filtering';
 import InputField from './components/InputField/InputField';
 import ListBlock from './components/ListBlock/ListBlock';
@@ -52,6 +53,11 @@ export default function ToDoList() {
     setTodos([...updatedTodos]);
   };
 
+  const handlerDeleteAllItems = () => {
+    setTodos([]);
+
+  };
+
 
   const handlerFilterTodos = () => {
     if (status === "all") {
@@ -85,6 +91,9 @@ export default function ToDoList() {
         handlerDeleteItem = {handlerDeleteItem}
         filteredTodos = {filteredTodos}
       />     
+      <DeleteSelected 
+        handlerDeleteAllItems={handlerDeleteAllItems}
+      />
     </section> 
   );
 }
